@@ -1,6 +1,6 @@
 var repuestos = [];
-repuestos.push(new Repuesto("33-2409", "FILTRO DE AIRE OEM NISSAN", "El material de algodón de alto flujo está diseñado para permitir hasta un 50 % más de flujo de aire que los filtros de papel tradicionales y un mayor flujo de aire significa más caballos de fuerza y torque", "K&N", "OEM NISSAN", "112.000", "Motor", "Disponible", "100", "Bodega 1", "Nuevo", "Original"));
-repuestos.push(new Repuesto("33-2410", "Escape Alto Flujo Hks", "Dimensiones:Entrada: 2 pulgadas, Salida: 3,5 pulgadasLargo, total: 47,5, Largo de cuerpo: 30cm, Ancho cuerpo: 4,5 pulgadas de diámetro y 36cm de perímetro", "HKS", "Hi Power", "94.590", "Escape", "No Disponible", "5", "Bodega 3", "Usado", "Original"));
+repuestos.push(new Repuesto("R-2010", "FILTRO DE AIRE OEM NISSAN", "El material de algodón de alto flujo está diseñado para permitir hasta un 50 % más de flujo de aire que los filtros de papel tradicionales y un mayor flujo de aire significa más caballos de fuerza y torque", "K&N", "OEM NISSAN", "112.000", "Motor", "Disponible", "100", "Bodega 1", "Nuevo", "Original"));
+repuestos.push(new Repuesto("R-2011", "Escape Alto Flujo Hks", "Dimensiones:Entrada: 2 pulgadas, Salida: 3,5 pulgadasLargo, total: 47,5, Largo de cuerpo: 30cm, Ancho cuerpo: 4,5 pulgadas de diámetro y 36cm de perímetro", "HKS", "Hi Power", "94.590", "Escape", "No Disponible", "5", "Bodega 3", "Usado", "Original"));
 function listarrepuestos() {
     var filas = "";
     for (let i = 0; i <repuestos.length; i++) {
@@ -46,11 +46,11 @@ function limpiarCampos(x) {
 
 function consultar() {
     var cod = document.getElementById("txtcodigo").value;
-    // Expresión para verificar si el código está en el rango de "33-2409" a "33-2450"
-    const codigoRegex = /^33-24(0[9-9]|1[0-9]|2[0-9]|30|4[0-9]|50)$/;
+    // Expresión para verificar si el código está en el rango de "R-2010" a "R-2020"
+    var codigoRegex = /^R-20(1[0-9]|20)$/;
 
     if (!codigoRegex.test(cod)) {
-        alert("El código debe estar en el rango de 33-2409 a 33-2450.");
+        alert("El código debe estar en el rango de R-2010 a R-2020.");
         document.getElementById("txtcodigo").focus();
         return;
     }
@@ -123,10 +123,19 @@ function registrar() {
     } else {
         mtip = "Generico";
     }
+    var cod = document.getElementById("txtcodigo").value;
+    // Expresión para verificar si el código está en el rango de "R-2010" a "R-2020"
+    var codigoRegex = /^R-20(1[0-9]|20)$/;
+
+    if (!codigoRegex.test(cod)) {
+        alert("El código debe estar en el rango de R-2010 a R-2020.");
+        document.getElementById("txtcodigo").focus();
+        return;
+    }
 
     var errores = "";
-    if (cod.trim().length < 6 || cod.trim().length > 12) {
-        errores += "El código debe contener entre 6 y 12 caracteres!\n";
+    if (cod.trim().length < 2 || cod.trim().length > 5) {
+        errores += "El código debe contener entre 2 y 5 caracteres!\n";
     } else {
         let x = 0;
         for (let i = 0; i < repuestos.length; i++) {
@@ -215,6 +224,15 @@ function modificar() {
         mtip = "Original";
     } else {
         mtip = "Generico";
+    }
+    var cod = document.getElementById("txtcodigo").value;
+    // Expresión para verificar si el código está en el rango de "R-2010" a "R-2020"
+    var codigoRegex = /^R-20(1[0-9]|20)$/;
+
+    if (!codigoRegex.test(cod)) {
+        alert("El código debe estar en el rango de R-2010 a R-2020.");
+        document.getElementById("txtcodigo").focus();
+        return;
     }
 
     var errores = "";
@@ -324,6 +342,16 @@ function modificar() {
 
 function eliminar() {
     var cod = document.getElementById("txtcodigo").value.toUpperCase();
+
+    var cod = document.getElementById("txtcodigo").value;
+    // Expresión para verificar si el código está en el rango de "R-2010" a "R-2020"
+    var codigoRegex = /^R-20(1[0-9]|20)$/;
+
+    if (!codigoRegex.test(cod)) {
+        alert("El código debe estar en el rango de R-2010 a R-2020.");
+        document.getElementById("txtcodigo").focus();
+        return;
+    }
     var errores = "";
 
     if (cod.trim().length < 6 || cod.trim().length > 12) {
