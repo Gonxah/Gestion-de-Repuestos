@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Repuestos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Css/style.css">
+    <script src="JS/repuesto.js"></script>
+    <script src="JS/funciones.js"></script>
+    <script src="JS/excel.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Gestion de Repuestos</h2>
+        <div id="mensajes"></div>
+        <form id="repuestoForm">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="codigo" class="form-label">Código <span class="text-secondary">(SKU)</span></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="txtcodigo" required>
+                        <button type="button" class="btn btn-info" onclick="consultar()">Consultar</button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="txtnom" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="txtdesc" rows="3" required></textarea>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="marca" class="form-label">Marca</label>
+                    <input type="text" class="form-control" id="txtmarca" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="modelo" class="form-label">Modelo</label>
+                    <input type="text" class="form-control" id="txtmodelo" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="prec" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select class="form-control" id="txtcat" required>
+                        <option value="">Seleccione</option>
+                        <option value="Motor">Motor</option>
+                        <option value="Carrocería">Carrocería</option>
+                        <option value="Suspensión">Suspensión</option>
+                        <option value="Escape">Escape</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-check-label" for="opdisp">Disponibilidad</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="disponibilidad" id="disponible" value="Disponible" required>
+                            <label class="form-check-label" for="disponible">Disponible</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="disponibilidad" id="noDisponible" value="No Disponible" required>
+                            <label class="form-check-label" for="noDisponible">No Disponible</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" id="txtstock" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-check-label" for="optip">Tipo</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="tipo" id="original" value="Original" required>
+                            <label class="form-check-label" for="original">Original</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="tipo" id="generico" value="Generico" required>
+                            <label class="form-check-label" for="generico">Generico</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="Estado" class="form-label">Estado</label>
+                    <select class="form-control" id="txtEstado" required>
+                        <option value="">Seleccione</option>
+                        <option value="Nuevo">Nuevo</option>
+                        <option value="Usado">Usado</option>
+                        <option value="Usado - Como Nuevo">Usado - Como Nuevo</option>
+                        <option value="Usado - Buen Estado">Usado - Buen Estado</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="ubicacion" class="form-label">Ubicación</label>
+                    <select class="form-control" id="txtubi" required>
+                        <option value="">Seleccione</option>
+                        <option value="Bodega 1">Bodega 1</option>
+                        <option value="Bodega 2">Bodega 2</option>
+                        <option value="Bodega 3">Bodega 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-3 mb-3">
+                    <button type="submit" class="btn btn-success w-100" onclick="registrar()">Registrar</button>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <button type="button" class="btn btn-warning w-100" onclick="modificar()">Modificar</button>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <button type="button" class="btn btn-danger w-100" onclick="eliminar()">Eliminar</button>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <button type="button" class="btn btn-primary w-100" onclick="exportar()">Exportar a Excel</button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table mt-4 table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Precio</th>
+                        <th>Categoría</th>
+                        <th>Disponibilidad</th>
+                        <th>Stock</th>
+                        <th>Ubicación</th>
+                        <th>Estado</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody id="tabladedatos">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+</body>
+</html>
