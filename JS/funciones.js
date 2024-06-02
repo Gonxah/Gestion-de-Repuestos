@@ -46,7 +46,7 @@ function limpiarCampos(x) {
 
 function consultar() {
     var cod = document.getElementById("txtcodigo").value;
-    // Expresión regular para verificar si el código está en el rango de "33-2409" a "33-2450"
+    // Expresión para verificar si el código está en el rango de "33-2409" a "33-2450"
     const codigoRegex = /^33-24(0[9-9]|1[0-9]|2[0-9]|30|4[0-9]|50)$/;
 
     if (!codigoRegex.test(cod)) {

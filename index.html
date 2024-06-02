@@ -41,10 +41,6 @@
                     <input type="text" class="form-control" id="txtmodelo" required>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="precio" class="form-label">Precio</label>
-                    <input type="number" class="form-control" id="prec" required>
-                </div>
-                <div class="col-md-4 mb-3">
                     <label for="categoria" class="form-label">Categoría</label>
                     <select class="form-control" id="txtcat" required>
                         <option value="">Seleccione</option>
@@ -68,8 +64,22 @@
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="prec" required>
+                </div>
+                <div class="col-md-4 mb-3">
                     <label for="stock" class="form-label">Stock</label>
                     <input type="number" class="form-control" id="txtstock" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="Estado" class="form-label">Estado</label>
+                    <select class="form-control" id="txtEstado" required>
+                        <option value="">Seleccione</option>
+                        <option value="Nuevo">Nuevo</option>
+                        <option value="Usado">Usado</option>
+                        <option value="Usado - Como Nuevo">Usado - Como Nuevo</option>
+                        <option value="Usado - Buen Estado">Usado - Buen Estado</option>
+                    </select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label class="form-check-label" for="optip">Tipo</label>
@@ -83,16 +93,6 @@
                             <label class="form-check-label" for="generico">Generico</label>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="Estado" class="form-label">Estado</label>
-                    <select class="form-control" id="txtEstado" required>
-                        <option value="">Seleccione</option>
-                        <option value="Nuevo">Nuevo</option>
-                        <option value="Usado">Usado</option>
-                        <option value="Usado - Como Nuevo">Usado - Como Nuevo</option>
-                        <option value="Usado - Buen Estado">Usado - Buen Estado</option>
-                    </select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="ubicacion" class="form-label">Ubicación</label>
